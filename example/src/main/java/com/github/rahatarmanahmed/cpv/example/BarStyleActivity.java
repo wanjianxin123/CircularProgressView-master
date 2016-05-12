@@ -1,5 +1,6 @@
 package com.github.rahatarmanahmed.cpv.example;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,13 +17,14 @@ public class BarStyleActivity extends Activity {
 
     CircularProgressView progressView;
     Thread updateThread;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barstyle_main);
         progressView = (CircularProgressView) findViewById(R.id.progress_view);
-
+        //这是增加的内容
         // Test the listener with logcat messages
         progressView.addListener(new CircularProgressViewAdapter() {
             @Override
@@ -52,13 +54,10 @@ public class BarStyleActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(progressView.isIndeterminate())
-                {
+                if (progressView.isIndeterminate()) {
                     progressView.setIndeterminate(false);
                     button.setText("Switch to indeterminate");
-                }
-                else
-                {
+                } else {
                     progressView.setIndeterminate(true);
                     button.setText("Switch to determinate");
                 }
@@ -75,7 +74,7 @@ public class BarStyleActivity extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!progressView.isIndeterminate()) {
+                if (!progressView.isIndeterminate()) {
                     progressView.setProgress(0f);
                     // Run thread to update progress every quarter second until full
                     updateThread = new Thread(new Runnable() {
