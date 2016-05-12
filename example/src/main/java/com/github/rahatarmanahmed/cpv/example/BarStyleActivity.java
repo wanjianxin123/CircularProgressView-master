@@ -18,7 +18,7 @@ public class BarStyleActivity extends Activity {
     CircularProgressView progressView;
     Thread updateThread;
     private ActionBar actionBar;
-
+    private String mm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
